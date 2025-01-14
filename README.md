@@ -1,48 +1,65 @@
-# Azure TLS Version Checker
+# Azure TLS Version Report Script
 
-This repository contains a PowerShell script that uses Azure Resource Graph to find Azure resources that have a TLS version configured. It searches for TLS-related properties across multiple property names and returns the resource name, type, and the TLS version value.
+## Overview
+
+This PowerShell script generates a report on the configured TLS versions of various Azure services across all subscriptions and resource groups in a tenant. It automates the process by iterating through all subscriptions and resource groups, requiring no manual input.
+
+The script outputs two reports:
+- **CSV**: A detailed table of TLS configurations.
+- **HTML**: A formatted HTML file with easy-to-read color-coded TLS compliance information.
+
+## Supported Azure Services
+
+The script collects TLS configuration data for the following Azure services:
+
+- Azure App Service
+- Azure Storage Accounts
+- Azure SQL Database
+- Azure Key Vault
+- Azure Application Gateway
+- Azure Front Door
+- Azure API Management
+- Azure Load Balancer
+- Azure Virtual Network Gateway
+- Azure SignalR Service
+- Azure Redis Cache
+- Azure Service Bus
+- Azure Kubernetes Service
 
 ## Features
 
-- **Multi-Property Search:**  
-  The script checks for TLS version values across the following properties:
-  - `properties.minimumTlsVersion`
-  - `properties.MinTlsVersion`
-  - `properties.minimalTlsVersion`
+- **Automated Iteration:** Automatically iterates through all subscriptions and resource groups in the tenant.
+- **Comprehensive Reports:** Provides CSV and HTML reports for easy analysis and sharing.
+- **TLS Compliance Checking:** Highlights resources using insecure TLS versions (e.g., TLS 1.0, 1.1).
+- **Error Handling:** Gracefully handles missing data and inaccessible resources.
 
-- **Flexible Output:**  
-  The results are displayed in the console in a formatted table, with the option to export to a CSV file.
+## Requirements
 
-- **Azure Resource Graph:**  
-  Utilizes the Azure Resource Graph to perform the query across all resources in your subscription.
+- **PowerShell**: PowerShell 5.1 or later (PowerShell Core is recommended for cross-platform support).
+- **Azure PowerShell Module**: Ensure the `Az` module is installed and up to date.
+  ```powershell
+  Install-Module -Name Az -AllowClobber -Scope CurrentUser
+  ```
+## Usage
+### Clone this repository:
 
-## Prerequisites
-
-- [Azure PowerShell module (Az)](https://learn.microsoft.com/en-us/powershell/azure/install-az-ps)
-- An active Azure subscription.
-- PowerShell 5.x or PowerShell Core (pwsh).
-
-## Setup and Usage
-
-1. **Clone the Repository**
-
-   ```bash
-   git clone https://github.com/<your-username>/azure-tls-version-checker.git
-   cd azure-tls-version-checker
-   ```
-
-2. **Authentication**
-Open a PowerShell terminal and authenticate to your Azure account:
 ```bash
-Connect-AzAccount
+git clone <repository-url>
+cd <repository-directory>
 ```
 
-3. **Run the Script**
-To display the results on the console:
-```bash
-.\AuditAzureTlsVersions.ps1
+### Run the script:
+
+```powershell
+./AuditAzureTlsVersions.ps1
 ```
-To export the results to a CSV file:
-```bash
-.\AuditAzureTlsVersions.ps1 -ExportCsv "PATHTOFILE"
+
+### Locate the output reports in the current directory:
+
 ```
+AzureTLSReport.csv
+AzureTLSReport.html
+```
+
+### Author
+Timo Haldi

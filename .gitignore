@@ -1,10 +1,24 @@
-# Ignore PowerShell native files
-*.psd1
+# Ignore PowerShell-specific files
+*.ps1~
+
+# Ignore report files
+*.csv
+*.html
+
+# Ignore logs
+*.log
+
+# Ignore PowerShell Integrated Console history
+*.ps1xml
+*.psc1
 *.psm1
 
-# Ignore logs and temporary files
-*.log
-*.tmp
-
-# Ignore VS Code settings folder (if used)
+# Ignore Visual Studio Code settings
 .vscode/
+.history/
+
+# Ignore Python/Virtual Environment files
+__pycache__/
+*.py[cod]
+*.pyo
+*.env
