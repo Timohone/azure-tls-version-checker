@@ -1,0 +1,10 @@
+# Ignore PowerShell native files
+*.psd1
+*.psm1
+
+# Ignore logs and temporary files
+*.log
+*.tmp
+
+# Ignore VS Code settings folder (if used)
+.vscode/
